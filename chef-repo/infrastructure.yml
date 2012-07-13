@@ -1,0 +1,16 @@
+cookbooks:
+- apps:
+- chef_handler:
+- minitest-handler:
+
+environments:
+- production:
+
+data bags:
+- apps:
+  - www
+
+nodes:
+- ec2 1:
+  - recipe[minitest-handler] recipe[apps]
+  - --no-host-key-verify -x ubuntu -G default -I ami-3c994355 -f c1.medium -d ubuntu12.04-gems --region us-east-1 -E production
