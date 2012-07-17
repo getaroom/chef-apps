@@ -24,12 +24,13 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 
-ssh_keys = search(:users, "NOT action:remove").map { |user| user['ssh_keys'] }.flatten.sort
+users = search(:users, "NOT action:remove")
 
 search :apps do |app|
   if (app['server_roles'] & node.run_list.roles).any?
     group app['group'] do
       system true
+      members users.map { |user| user['id'] }
     end
 
     user app['owner'] do
@@ -49,7 +50,7 @@ search :apps do |app|
       owner app['owner']
       group app['group']
       mode "600"
-      content ssh_keys.join("\n")
+      content users.map { |user| user['ssh_keys'] }.flatten.sort.join("\n")
     end
   end
 end

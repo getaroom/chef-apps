@@ -1,4 +1,5 @@
 {
   "id": "janedoe",
+  "groups": ["sysadmin"],
   "ssh_keys": ["ssh-rsa AAAAB3Nz...yhCw== janedoe1", "ssh-rsa AAAAB3Nz...yhCw== janedoe2"]
 }

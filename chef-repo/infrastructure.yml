@@ -2,6 +2,7 @@ cookbooks:
 - apps:
 - chef_handler:
 - minitest-handler:
+- users:
 
 environments:
 - production:

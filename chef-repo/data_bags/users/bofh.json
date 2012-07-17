@@ -1,5 +1,6 @@
 {
   "id": "bofh",
   "action": "remove",
+  "groups": ["sysadmin"],
   "ssh_keys": ["ssh-rsa AAAAB3Nz...yhCw== bofh"]
 }

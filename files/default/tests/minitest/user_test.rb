@@ -15,6 +15,14 @@ describe_recipe "apps::user" do
       it "is a system group" do
         assert_operator www_group.gid, :<, 1000
       end
+
+      it "includes the users data bag users" do
+        www_group.must_include %w(janedoe johndoe)
+      end
+
+      it "does not include the removed data bag users" do
+        www_group.wont_include "bofh"
+      end
     end
 
     describe "www user" do
