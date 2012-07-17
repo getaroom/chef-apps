@@ -13,6 +13,10 @@ data bags:
 - apps:
   - princess
   - www
+- users:
+  - bofh
+  - janedoe
+  - johndoe
 
 nodes:
 - ec2 1:

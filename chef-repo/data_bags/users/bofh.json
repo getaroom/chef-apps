@@ -1,0 +1,5 @@
+{
+  "id": "bofh",
+  "action": "remove",
+  "ssh_keys": ["ssh-rsa AAAAB3Nz...yhCw== bofh"]
+}

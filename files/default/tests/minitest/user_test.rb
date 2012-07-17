@@ -4,9 +4,10 @@ describe_recipe "apps::user" do
   include MiniTest::Chef::Resources
 
   describe "www app" do
-    describe "www group" do
-      let(:www_group) { group "www" }
+    let(:www_group) { group "www" }
+    let(:www_user) { user "www" }
 
+    describe "www group" do
       it "exists" do
         www_group.must_exist
       end
@@ -17,8 +18,6 @@ describe_recipe "apps::user" do
     end
 
     describe "www user" do
-      let(:www_user) { user "www" }
-
       it "exists" do
         www_user.must_exist
       end
@@ -48,6 +47,55 @@ describe_recipe "apps::user" do
         home.must_have :group, "www"
       end
     end
+
+    describe ".ssh directory" do
+      let(:ssh_dir) { directory "/srv/www/.ssh" }
+
+      it "exists" do
+        ssh_dir.must_exist
+      end
+
+      it "is owned by www/www" do
+        ssh_dir.must_have :owner, "www"
+        ssh_dir.must_have :group, "www"
+      end
+
+      it "is mode 700" do
+        ssh_dir.must_have :mode, "700"
+      end
+    end
+
+    describe "authorized_keys file" do
+      let(:authorized_keys) { file "/srv/www/.ssh/authorized_keys" }
+      let(:stat) { File.stat(authorized_keys.path) }
+
+      it "exists" do
+        authorized_keys.must_exist
+      end
+
+      it "is owned by www/www" do
+        assert_equal www_user.uid, stat.uid
+        assert_equal www_group.gid, stat.gid
+      end
+
+      it "is mode 600" do
+        assert_equal "600".oct, (stat.mode & 007777)
+      end
+
+      it "includes a user's single public key" do
+        authorized_keys.must_include "ssh-rsa AAAAB3Nz...yhCw== johndoe"
+      end
+
+      it "includes a user's multiple public keys" do
+        authorized_keys.must_include "ssh-rsa AAAAB3Nz...yhCw== janedoe1"
+        authorized_keys.must_include "ssh-rsa AAAAB3Nz...yhCw== janedoe2"
+      end
+
+      it "does not include a removed user's public key" do
+        authorized_keys.wont_include "ssh-rsa AAAAB3Nz...yhCw== bofh"
+      end
+    end
+  end
 
   describe "princess app" do
     describe "princess group" do

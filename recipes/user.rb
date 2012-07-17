@@ -24,11 +24,12 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 
+ssh_keys = search(:users, "NOT action:remove").map { |user| user['ssh_keys'] }.flatten.sort
+
 search :apps do |app|
   if (app['server_roles'] & node.run_list.roles).any?
     group app['group'] do
       system true
-      action :create
     end
 
     user app['owner'] do
@@ -36,8 +37,19 @@ search :apps do |app|
       system true
       home app['deploy_to']
       supports :manage_home => true
-      action :create
     end
 
+    directory "#{app['deploy_to']}/.ssh" do
+      owner app['owner']
+      group app['group']
+      mode "700"
+    end
+
+    file "#{app['deploy_to']}/.ssh/authorized_keys" do
+      owner app['owner']
+      group app['group']
+      mode "600"
+      content ssh_keys.join("\n")
+    end
   end
 end

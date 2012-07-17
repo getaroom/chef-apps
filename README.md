@@ -6,9 +6,10 @@ Tested on Ubuntu 12.04
 
 ## user
 
-Setup apps' user from the apps data bag.
+* Setup apps' user from the apps data bag.
+* Setup apps' user public SSH keys from the users data bag.
 
-### Example Data Bag Item
+### Example Apps Data Bag Item
 
 ```json
 {
@@ -17,6 +18,15 @@ Setup apps' user from the apps data bag.
   "owner": "www",
   "group": "www",
   "deploy_to": "/srv/www"
+}
+```
+
+### Example Users Data Bag Item
+
+```json
+{
+  "id": "jdoe",
+  "ssh_keys": ["ssh-rsa AAAAB3Nz...yhCw== jdoe"]
 }
 ```
 
