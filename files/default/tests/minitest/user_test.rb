@@ -48,5 +48,24 @@ describe_recipe "apps::user" do
         home.must_have :group, "www"
       end
     end
+
+  describe "princess app" do
+    describe "princess group" do
+      it "does not exist" do
+        group("princess").wont_exist
+      end
+    end
+
+    describe "princess user" do
+      it "does not exist" do
+        user("princess").wont_exist
+      end
+    end
+
+    describe "princess home directory" do
+      it "does not exist" do
+        directory("/srv/princess").wont_exist
+      end
+    end
   end
 end

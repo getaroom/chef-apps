@@ -25,16 +25,19 @@
 #
 
 search :apps do |app|
-  group app['group'] do
-    system true
-    action :create
-  end
+  if (app['server_roles'] & node.run_list.roles).any?
+    group app['group'] do
+      system true
+      action :create
+    end
 
-  user app['owner'] do
-    group app['group']
-    system true
-    home app['deploy_to']
-    supports :manage_home => true
-    action :create
+    user app['owner'] do
+      group app['group']
+      system true
+      home app['deploy_to']
+      supports :manage_home => true
+      action :create
+    end
+
   end
 end

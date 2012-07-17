@@ -13,6 +13,7 @@ Setup apps' user from the apps data bag.
 ```json
 {
   "id": "www",
+  "server_roles": ["www"],
   "owner": "www",
   "group": "www",
   "deploy_to": "/srv/www"

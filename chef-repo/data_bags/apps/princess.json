@@ -1,0 +1,7 @@
+{
+  "id": "princess",
+  "server_roles": ["princess"],
+  "owner": "princess",
+  "group": "princess",
+  "deploy_to": "/srv/princess"
+}
