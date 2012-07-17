@@ -13,4 +13,4 @@ data bags:
 nodes:
 - ec2 1:
   - recipe[minitest-handler] recipe[apps]
-  - --no-host-key-verify -x ubuntu -G default -I ami-3c994355 -f c1.medium -d ubuntu12.04-gems --region us-east-1 -E production
+  - --no-host-key-verify -x ubuntu -G default -I ami-3c994355 -f c1.medium -d chef-full --region us-east-1 -E production

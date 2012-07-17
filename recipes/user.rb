@@ -25,14 +25,16 @@
 #
 
 search :apps do |app|
-  group "app::#{app['id']}" do
-    group_name app['group']
+  group app['group'] do
+    system true
     action :create
   end
 
-  user "app::#{app['id']}" do
-    username app['owner']
+  user app['owner'] do
     group app['group']
+    system true
+    home app['deploy_to']
+    supports :manage_home => true
     action :create
   end
 end

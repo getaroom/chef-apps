@@ -14,7 +14,8 @@ Setup apps' user from the apps data bag.
 {
   "id": "www",
   "owner": "www",
-  "group": "www"
+  "group": "www",
+  "deploy_to": "/srv/www"
 }
 ```
 
