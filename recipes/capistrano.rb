@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: apps
-# Recipe:: default
+# Recipe:: capistrano
 #
 # Copyright 2012, getaroom
 #
@@ -24,5 +24,32 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 
-include_recipe "apps::user"
-include_recipe "apps::capistrano"
+search :apps do |app|
+  if (app['server_roles'] & node.run_list.roles).any?
+    directory app['deploy_to'] do
+      owner app['owner']
+      group app['group']
+      mode "755"
+    end
+
+    directory "#{app['deploy_to']}/releases" do
+      owner app['owner']
+      group app['group']
+      mode "775"
+    end
+
+    directory "#{app['deploy_to']}/shared" do
+      owner app['owner']
+      group app['group']
+      mode "775"
+    end
+
+    %w(config log pids system).each do |shared_child|
+      directory "#{app['deploy_to']}/shared/#{shared_child}" do
+        owner app['owner']
+        group app['group']
+        mode "775"
+      end
+    end
+  end
+end

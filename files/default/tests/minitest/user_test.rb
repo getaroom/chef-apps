@@ -17,7 +17,8 @@ describe_recipe "apps::user" do
       end
 
       it "includes the users data bag users" do
-        www_group.must_include %w(janedoe johndoe)
+        www_group.must_include "janedoe"
+        www_group.must_include "johndoe"
       end
 
       it "does not include the removed data bag users" do
