@@ -9,6 +9,10 @@ Tested on Ubuntu 12.04
 * Setup apps' directories in a Capistrano deployment skeleton.
   Equivalent to the `deploy:setup` Capistrano task
 
+## deploy_key
+
+* Setup apps' deploy key to access version control.
+
 ## user
 
 * Setup apps' user from the apps data bag.
@@ -24,7 +28,8 @@ Tested on Ubuntu 12.04
   "server_roles": ["www"],
   "owner": "www",
   "group": "www",
-  "deploy_to": "/srv/www"
+  "deploy_to": "/srv/www",
+  "deploy_key": "-----BEGIN RSA PRIVATE KEY-----\nxxxx\n-----END RSA PRIVATE KEY-----"
 }
 ```
 

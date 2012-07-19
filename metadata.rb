@@ -10,4 +10,5 @@ supports "debian"
 supports "ubuntu"
 
 recipe "apps::capistrano", "Setup apps' directories in a Capistrano deployment skeleton."
+recipe "apps::deploy_key", "Setup apps' deploy key to access version control."
 recipe "apps::user", "Setup apps' user from the apps data bag."

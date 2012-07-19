@@ -3,5 +3,6 @@
   "server_roles": ["princess"],
   "owner": "princess",
   "group": "princess",
-  "deploy_to": "/srv/princess"
+  "deploy_to": "/srv/princess",
+  "deploy_key": "-----BEGIN RSA PRIVATE KEY-----\nxxxx\n-----END RSA PRIVATE KEY-----"
 }

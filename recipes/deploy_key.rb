@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: apps
-# Recipe:: default
+# Recipe:: deploy_key
 #
 # Copyright 2012, getaroom
 #
@@ -24,6 +24,14 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 
-include_recipe "apps::user"
-include_recipe "apps::deploy_key"
-include_recipe "apps::capistrano"
+search :apps do |app|
+  if (app['server_roles'] & node.run_list.roles).any?
+    file "#{app['deploy_to']}/.ssh/id_rsa" do
+      owner app['owner']
+      group app['group']
+      mode "600"
+      content app['deploy_key']
+      only_if { app['deploy_key'] }
+    end
+  end
+end
