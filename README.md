@@ -4,12 +4,19 @@ Tested on Ubuntu 12.04
 
 # Recipes
 
+## capistrano
+
+* Setup apps' directories in a Capistrano deployment skeleton.
+  Equivalent to the `deploy:setup` Capistrano task
+
 ## user
 
 * Setup apps' user from the apps data bag.
 * Setup apps' user public SSH keys from the users data bag.
 
-### Example Apps Data Bag Item
+# Example Data Bag Items
+
+## Apps
 
 ```json
 {
@@ -21,7 +28,7 @@ Tested on Ubuntu 12.04
 }
 ```
 
-### Example Users Data Bag Item
+## Users
 
 ```json
 {
