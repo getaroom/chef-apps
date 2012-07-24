@@ -2,6 +2,10 @@ Configures Apps
 
 Tested on Ubuntu 12.04
 
+# Attributes
+
+* `node['framework_environment']` - The environment/mode a framework, such as Rails, should use - defaults to the chef_environment
+
 # Recipes
 
 ## capistrano
