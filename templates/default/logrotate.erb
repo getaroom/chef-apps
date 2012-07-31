@@ -1,0 +1,11 @@
+<%= @app['deploy_to'] %>/shared/log/*.log {
+  daily
+  rotate 30
+  dateext
+  compress
+  delaycompress
+  missingok
+  notifempty
+  copytruncate
+  create 664 <%= @app['owner'] %> <%= @app['group'] %>
+}

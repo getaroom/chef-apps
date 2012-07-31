@@ -13,6 +13,10 @@ Tested on Ubuntu 12.04
 * Setup apps' directories in a Capistrano deployment skeleton.
   Equivalent to the `deploy:setup` Capistrano task
 
+## logrotate
+
+* Setup apps' log rotation.
+
 ## user
 
 * Setup apps' user from the apps data bag.

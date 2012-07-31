@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: apps
-# Recipe:: default
+# Recipe:: logrotate
 #
 # Copyright 2012, getaroom
 #
@@ -24,6 +24,15 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 
-include_recipe "apps::user"
-include_recipe "apps::capistrano"
-include_recipe "apps::logrotate"
+search :apps do |app|
+  if (app['server_roles'] & node.run_list.roles).any?
+    template "/etc/logrotate.d/#{app['id']}" do
+      source "logrotate.erb"
+      owner "root"
+      group "root"
+      mode "644"
+      backup false
+      variables :app => app
+    end
+  end
+end
