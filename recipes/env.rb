@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: apps
-# Recipe:: default
+# Recipe:: env
 #
 # Copyright 2012, getaroom
 #
@@ -24,7 +24,17 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 
-include_recipe "apps::env"
-include_recipe "apps::user"
-include_recipe "apps::capistrano"
-include_recipe "apps::logrotate"
+%w(MERB_ENV RACK_ENV RAILS_ENV).each do |variable|
+  ruby_block variable do
+    var_line = %{#{variable}="#{node['framework_environment']}"}
+
+    block do
+      file = Chef::Util::FileEdit.new("/etc/environment")
+      file.search_file_replace_line(variable, var_line)
+      file.insert_line_if_no_match(variable, var_line)
+      file.write_file
+    end
+
+    not_if "grep '#{var_line}' /etc/environment"
+  end
+end

@@ -13,6 +13,10 @@ Tested on Ubuntu 12.04
 * Setup apps' directories in a Capistrano deployment skeleton.
   Equivalent to the `deploy:setup` Capistrano task
 
+## env
+
+* Setup apps' framework environment variables.
+
 ## logrotate
 
 * Setup apps' log rotation.
