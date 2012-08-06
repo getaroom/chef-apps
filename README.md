@@ -45,6 +45,7 @@ Tested on Ubuntu 12.04
 ```json
 {
   "id": "jdoe",
+  "groups": ["www"],
   "ssh_keys": ["ssh-rsa AAAAB3Nz...yhCw== jdoe"]
 }
 ```

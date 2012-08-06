@@ -21,6 +21,10 @@ describe_recipe "apps::user" do
         www_group.must_include "johndoe"
       end
 
+      it "does not include a user not in the www group" do
+        www_group.wont_include "pfy"
+      end
+
       it "does not include the removed data bag users" do
         www_group.wont_include "bofh"
       end
@@ -98,6 +102,10 @@ describe_recipe "apps::user" do
       it "includes a user's multiple public keys" do
         authorized_keys.must_include "ssh-rsa AAAAB3Nz...yhCw== janedoe1"
         authorized_keys.must_include "ssh-rsa AAAAB3Nz...yhCw== janedoe2"
+      end
+
+      it "does not include the public key of a user not in the www group" do
+        authorized_keys.wont_include "ssh-rsa AAAAB3Nz...yhCw== pfy"
       end
 
       it "does not include a removed user's public key" do

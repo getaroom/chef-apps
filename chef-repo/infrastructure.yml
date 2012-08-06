@@ -18,6 +18,7 @@ data bags:
   - bofh
   - janedoe
   - johndoe
+  - pfy
 
 nodes:
 - ec2 1:

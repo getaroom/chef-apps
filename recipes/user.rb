@@ -24,10 +24,10 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 
-users = search(:users, "NOT action:remove")
-
 search :apps do |app|
   if (app['server_roles'] & node.run_list.roles).any?
+    users = search(:users, "groups:#{app['group']} NOT action:remove")
+
     group app['group'] do
       system true
       members users.map { |user| user['id'] }
