@@ -26,7 +26,7 @@
 
 search :apps do |app|
   if (app['server_roles'] & node.run_list.roles).any?
-    users = search(:users, "groups:#{app['group']} NOT action:remove")
+    users = search(:users, "groups:#{app['group']} AND NOT action:remove")
 
     group app['group'] do
       system true
