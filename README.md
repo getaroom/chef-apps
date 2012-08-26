@@ -36,6 +36,7 @@ Tested on Ubuntu 12.04
   "server_roles": ["www"],
   "owner": "www",
   "group": "www",
+  "shell": "/bin/bash",
   "deploy_to": "/srv/www"
 }
 ```

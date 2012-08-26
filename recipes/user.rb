@@ -37,6 +37,7 @@ search :apps do |app|
       group app['group']
       system true
       home app['deploy_to']
+      shell app['shell']
       supports :manage_home => true
     end
 

@@ -46,6 +46,10 @@ describe_recipe "apps::user" do
       it "uses the deploy_to directory as its home directory" do
         www_user.must_have :home, "/srv/www"
       end
+
+      it "uses the configured shell" do
+        www_user.must_have :shell, "/bin/bash"
+      end
     end
 
     describe "www home directory" do
