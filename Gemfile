@@ -4,7 +4,7 @@ gem "foodcritic"
 gem "rake"
 
 group :development do
-  gem "chef"
+  gem "chef", "< 10.14.0" # incompatible with minitest handler
   gem "growl"
   gem "guard"
   gem "guard-bundler"

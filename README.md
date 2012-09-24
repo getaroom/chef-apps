@@ -4,6 +4,7 @@ Tested on Ubuntu 12.04
 
 # Attributes
 
+* `node['apps']['user_search_qualifier']` - Optional additional user search clause
 * `node['framework_environment']` - The environment/mode a framework, such as Rails, should use - defaults to the chef_environment
 
 # Recipes

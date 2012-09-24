@@ -16,6 +16,7 @@ data bags:
   - www
 - users:
   - bofh
+  - codehack
   - janedoe
   - johndoe
   - pfy

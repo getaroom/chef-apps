@@ -28,6 +28,10 @@ describe_recipe "apps::user" do
       it "does not include the removed data bag users" do
         www_group.wont_include "bofh"
       end
+
+      it "does not include a user excluded by the search qualifier attribute" do
+        www_group.wont_include "codehack"
+      end
     end
 
     describe "www user" do
@@ -114,6 +118,10 @@ describe_recipe "apps::user" do
 
       it "does not include a removed user's public key" do
         authorized_keys.wont_include "ssh-rsa AAAAB3Nz...yhCw== bofh"
+      end
+
+      it "does not include the key of a user excluded by the search qualifier attribute" do
+        authorized_keys.wont_include "ssh-rsa AAAAB3Nz...yhCw== codehack"
       end
     end
   end

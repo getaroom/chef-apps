@@ -1,0 +1,5 @@
+{
+  "id": "codehack",
+  "groups": ["www"],
+  "ssh_keys": ["ssh-rsa AAAAB3Nz...yhCw== codehack"]
+}
